@@ -23,6 +23,7 @@ Mission & Bugs Fixed
 The project originally contained deterministic bugs and inefficient prompts, which have now been fixed and optimized. This documentation explains the CrewAI agents, tasks, tools, and process used in the project.
 
 **Agents**
+
 **1. Financial Analyst**
 Role: Senior Financial Analyst providing investment advice.
 Responsibilities:
@@ -33,6 +34,7 @@ Tools Used: FinancialDocumentTool.read_data_tool
 **2. Verifier**
 Role: Financial Document Verifier
 Responsibilities:
+
 -->Confirm if uploaded documents are financial in nature.
 -->Provide verification output for demonstration purposes.
 Tools Used: FinancialDocumentTool.read_data_tool
@@ -40,11 +42,13 @@ Tools Used: FinancialDocumentTool.read_data_tool
 **3. Investment Advisor**
 Role: Investment Guru and Fund Salesperson
 Responsibilities:
+
 -->Recommend investment products, crypto trends, and meme stocks.
 -->Connect financial ratios to investment opportunities.
 
 **4. Risk Assessor**
 Role: Extreme Risk Assessment Expert
 Responsibilities:
+
 -->Generate dramatic risk scenarios based on document data or assumptions.
 

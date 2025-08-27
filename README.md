@@ -22,8 +22,8 @@ Mission & Bugs Fixed
 ## CrewAI Documentation – Financial Document Analyzer
 The project originally contained deterministic bugs and inefficient prompts, which have now been fixed and optimized. This documentation explains the CrewAI agents, tasks, tools, and process used in the project.
 
-**Agents
-1. Financial Analyst**
+**Agents**
+**1. Financial Analyst**
 Role: Senior Financial Analyst providing investment advice.
 Responsibilities:
 -->Analyze financial documents and generate investment recommendations.

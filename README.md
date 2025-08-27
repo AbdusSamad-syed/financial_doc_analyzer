@@ -4,7 +4,7 @@
 A comprehensive financial document analysis system that processes corporate reports, financial statements, and investment documents using AI-powered analysis agents.
 Mission & Bugs Fixed
 
-##The project had two main issues:
+## The project had two main issues:
 **Deterministic Bugs:**
 
 1.Missing or incorrect imports in tools.py and agents.py.

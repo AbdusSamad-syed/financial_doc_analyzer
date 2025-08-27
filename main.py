@@ -2,6 +2,7 @@ from fastapi import FastAPI, File, UploadFile, Form, HTTPException
 import os
 import uuid
 import asyncio
+from concurrent.futures import ThreadPoolExecutor
 
 from crewai import Crew, Process
 from agents import financial_analyst
@@ -9,15 +10,14 @@ from task import analyze_financial_document
 
 app = FastAPI(title="Financial Document Analyzer")
 
-def run_crew(query: str, file_path: str="data/sample.pdf"):
-    """To run the whole crew"""
+def run_crew(query: str, file_path: str = "data/sample.pdf"):
+    """Run the financial crew to analyze the document"""
     financial_crew = Crew(
         agents=[financial_analyst],
         tasks=[analyze_financial_document],
         process=Process.sequential,
     )
-    
-    result = financial_crew.kickoff({'query': query})
+    result = financial_crew.kickoff({'query': query, 'file_path': file_path})
     return result
 
 @app.get("/")
@@ -26,7 +26,7 @@ async def root():
     return {"message": "Financial Document Analyzer API is running"}
 
 @app.post("/analyze")
-async def analyze_financial_document(
+async def analyze_document_endpoint(
     file: UploadFile = File(...),
     query: str = Form(default="Analyze this financial document for investment insights")
 ):
@@ -45,11 +45,13 @@ async def analyze_financial_document(
             f.write(content)
         
         # Validate query
-        if query=="" or query is None:
+        if not query:
             query = "Analyze this financial document for investment insights"
-            
-        # Process the financial document with all analysts
-        response = run_crew(query=query.strip(), file_path=file_path)
+        
+        # Run the crew in a thread to avoid blocking the event loop
+        loop = asyncio.get_running_loop()
+        with ThreadPoolExecutor() as pool:
+            response = await loop.run_in_executor(pool, run_crew, query.strip(), file_path)
         
         return {
             "status": "success",
@@ -66,7 +68,7 @@ async def analyze_financial_document(
         if os.path.exists(file_path):
             try:
                 os.remove(file_path)
-            except:
+            except Exception:
                 pass  # Ignore cleanup errors
 
 if __name__ == "__main__":

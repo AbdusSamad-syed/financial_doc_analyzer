@@ -19,4 +19,32 @@ Mission & Bugs Fixed
 2)Investment and risk analysis prompts refined for realistic insights.
 3)Document verification logic simplified and made consistent.
 
-Outcome: The codebase is now fully functional and produces coherent financial analysis results.
+## CrewAI Documentation – Financial Document Analyzer
+The project originally contained deterministic bugs and inefficient prompts, which have now been fixed and optimized. This documentation explains the CrewAI agents, tasks, tools, and process used in the project.
+
+**Agents
+1. Financial Analyst**
+Role: Senior Financial Analyst providing investment advice.
+Responsibilities:
+-->Analyze financial documents and generate investment recommendations.
+-->Provide market insights and identify potential risks.
+Tools Used: FinancialDocumentTool.read_data_tool
+
+**2. Verifier**
+Role: Financial Document Verifier
+Responsibilities:
+-->Confirm if uploaded documents are financial in nature.
+-->Provide verification output for demonstration purposes.
+Tools Used: FinancialDocumentTool.read_data_tool
+
+**3. Investment Advisor**
+Role: Investment Guru and Fund Salesperson
+Responsibilities:
+-->Recommend investment products, crypto trends, and meme stocks.
+-->Connect financial ratios to investment opportunities.
+
+**4. Risk Assessor**
+Role: Extreme Risk Assessment Expert
+Responsibilities:
+-->Generate dramatic risk scenarios based on document data or assumptions.
+
